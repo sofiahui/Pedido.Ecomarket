@@ -35,20 +35,12 @@ public class DataLoader implements CommandLineRunner {
             Pedido pedido = new Pedido();
 
             pedido.setId(i + 1);
-            // Fecha del pedido como Date
+            
             pedido.setFecha_pedido(faker.date().past(30, TimeUnit.DAYS));
-
-            // Hora del pedido como java.sql.Time
             Date randomDate = faker.date().future(15, TimeUnit.DAYS, new Date());
             pedido.setHora_pedido(new java.sql.Time(randomDate.getTime()));
-
-            // Costo del pedido como BigDecimal
             pedido.setCostoPedido(BigDecimal.valueOf(faker.number().numberBetween(5000, 100000)));
-            
-
-            // Comentario como String
             pedido.setComentario(faker.options().option("Dejar en porteria", "Llamar al llegar", "Entregar solo al titular"));
-
             pedidoRepository.save(pedido);
         }
 

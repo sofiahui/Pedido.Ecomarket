@@ -46,9 +46,9 @@ public class PedidoController {
 
 
     @PostMapping
-    @Operation(summary = "Crear un nuevo envio", description = "Registra un nuevo envio en el sistema")
+    @Operation(summary = "Crear un nuevo pedido", description = "Registra un nuevo pedido en el sistema")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "201", description = "Envio creado exitosamente",
+        @ApiResponse(responseCode = "201", description = "Pedido creado exitosamente",
                 content = @Content(mediaType = "application/json",
                 schema = @Schema(implementation = Pedido.class))),
         @ApiResponse(responseCode = "400", description = "Datos inválidos")
