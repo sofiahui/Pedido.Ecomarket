@@ -54,7 +54,7 @@ public class PedidoControllerTest {
     
     
     @Test
-    public void testGetPedido() throws Exception {
+    public void testGetPedidos() throws Exception {
         when(pedidoService.findAll()).thenReturn(List.of(pedido));
 
         mockMvc.perform(get("/api/v1/pedido")) // asegúrate que tu endpoint es correcto
@@ -72,7 +72,7 @@ public class PedidoControllerTest {
         when(pedidoService.findById(1)).thenReturn(pedido);
 
 
-        mockMvc.perform(get("/api/v1/envio/1"))
+        mockMvc.perform(get("/api/v1/pedido/1"))
                 .andExpect(status().isOk()) // Verifica que el estado de la respuesta sea 200 OK
                 .andExpect(jsonPath("$[0].id").value(1))
                 .andExpect(jsonPath("$[0].fecha_pedido").value("2025-06-15"))
@@ -81,12 +81,12 @@ public class PedidoControllerTest {
                 .andExpect(jsonPath("$[0].comentario").value("Dejar en portería"));
       }       
     @Test
-    public void testCreatenvio() throws Exception {
+    public void testCreatePedido() throws Exception {
       
         when(pedidoService.save(any(Pedido.class))).thenReturn(pedido);
 
         
-        mockMvc.perform(post("/api/v1/envio")
+        mockMvc.perform(post("/api/v1/pedido")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(pedido))) // Convierte el objeto Estudiante a JSON
                 .andExpect(status().isOk()) // Verifica que el estado de la respuesta sea 200 OK
