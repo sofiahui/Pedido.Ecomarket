@@ -21,6 +21,6 @@ public class PedidoModelAssemblers implements RepresentationModelAssembler<Pedid
     public EntityModel<Pedido> toModel(Pedido pedido) {
         return EntityModel.of(pedido,
                 linkTo(methodOn(PedidoControllerV2.class).getPedidoById(pedido.getId())).withSelfRel(),
-                linkTo(methodOn(PedidoControllerV2.class).getAllPedidos()).withRel("pedido"));
+                linkTo(methodOn(PedidoControllerV2.class).getAllPedidos()).withRel("pedidos"));
     }
 }

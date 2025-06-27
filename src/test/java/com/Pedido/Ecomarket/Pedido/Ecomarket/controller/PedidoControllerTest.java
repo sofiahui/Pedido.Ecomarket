@@ -28,19 +28,19 @@ import java.util.List;
 public class PedidoControllerTest {
 
     @Autowired
-    private MockMvc mockMvc; // Proporciona una manera de realizar peticiones HTTP en las pruebas
+    private MockMvc mockMvc; 
 
     @MockBean
     private PedidoService pedidoService; 
 
     @Autowired
-    private ObjectMapper objectMapper; // Se usa para convertir objetos Java a JSON y viceversa
+    private ObjectMapper objectMapper; 
 
     private Pedido pedido;
 
     @BeforeEach
     void setUp() throws Exception {
-        // Configura un objeto Envio de ejemplo antes de cada prueba
+        
         pedido = new Pedido();
 
         Time hora = Time.valueOf("10:30:00");
@@ -57,7 +57,7 @@ public class PedidoControllerTest {
     public void testGetPedidos() throws Exception {
         when(pedidoService.findAll()).thenReturn(List.of(pedido));
 
-        mockMvc.perform(get("/api/v1/pedido")) // asegúrate que tu endpoint es correcto
+        mockMvc.perform(get("/api/v1/pedido")) 
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].id").value(1))
                 .andExpect(jsonPath("$[0].fecha_pedido").value("2025-06-15"))
@@ -68,7 +68,7 @@ public class PedidoControllerTest {
     
     @Test
     public void testGetPedidoById() throws Exception {
-        // Define el comportamiento del mock: cuando se llame a findById() con 1, devuelve el objeto Estudiante
+        // Define el comportamiento del mock: cuando se llame a findById() con 1
         when(pedidoService.findById(1)).thenReturn(pedido);
 
 
@@ -88,7 +88,7 @@ public class PedidoControllerTest {
         
         mockMvc.perform(post("/api/v1/pedido")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(pedido))) // Convierte el objeto Estudiante a JSON
+                        .content(objectMapper.writeValueAsString(pedido))) 
                 .andExpect(status().isOk()) // Verifica que el estado de la respuesta sea 200 OK
                 .andExpect(jsonPath("$[0].id").value(1))
                 .andExpect(jsonPath("$[0].fecha_pedido").value("2025-06-15"))
@@ -106,7 +106,7 @@ public class PedidoControllerTest {
         
         mockMvc.perform(put("/api/v1/pedido/1")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(pedido))) // Convierte el objeto Estudiante a JSON
+                        .content(objectMapper.writeValueAsString(pedido))) 
                 .andExpect(status().isOk()) // Verifica que el estado de la respuesta sea 200 OK
                 .andExpect(jsonPath("$[0].id").value(1))
                 .andExpect(jsonPath("$[0].fecha_pedido").value("2025-06-15"))
